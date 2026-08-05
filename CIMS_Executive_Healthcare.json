@@ -1,0 +1,142 @@
+{
+  "name": "CIMS Executive Healthcare",
+
+  "background": "#F5F7FA",
+  "foreground": "#1F2937",
+  "tableAccent": "#0078D4",
+
+  "good": "#107C10",
+  "neutral": "#0078D4",
+  "bad": "#D13438",
+  "maximum": "#0F6CBD",
+  "center": "#F59E0B",
+  "minimum": "#8A8886",
+
+  "dataColors": [
+    "#0078D4",
+    "#2E8B57",
+    "#F59E0B",
+    "#D13438",
+    "#7B61FF",
+    "#00B7C3",
+    "#6B7280",
+    "#3B82F6"
+  ],
+
+  "visualStyles": {
+
+    "*": {
+
+      "*": {
+
+        "background": [
+          {
+            "show": true,
+            "color": {
+              "solid": {
+                "color": "#FFFFFF"
+              }
+            },
+            "transparency": 0
+          }
+        ],
+
+        "title": [
+          {
+            "show": true,
+            "fontFamily": "Segoe UI Semibold",
+            "fontSize": 17,
+            "fontColor": {
+              "solid": {
+                "color": "#1F2937"
+              }
+            }
+          }
+        ]
+      }
+    },
+
+    "card": {
+
+      "*": {
+
+        "labels": [
+          {
+            "fontSize": 34,
+            "color": {
+              "solid": {
+                "color": "#111827"
+              }
+            }
+          }
+        ],
+
+        "categoryLabels": [
+          {
+            "fontSize": 12,
+            "color": {
+              "solid": {
+                "color": "#6B7280"
+              }
+            }
+          }
+        ]
+      }
+    },
+
+    "clusteredBarChart": {
+
+      "*": {
+
+        "labels": [
+          {
+            "show": true,
+            "fontSize": 12
+          }
+        ],
+
+        "categoryAxis": [
+          {
+            "labelColor": {
+              "solid": {
+                "color": "#374151"
+              }
+            },
+            "fontSize": 12
+          }
+        ],
+
+        "valueAxis": [
+          {
+            "labelColor": {
+              "solid": {
+                "color": "#6B7280"
+              }
+            },
+            "fontSize": 11
+          }
+        ]
+      }
+    },
+
+    "donutChart": {
+
+      "*": {
+
+        "legend": [
+          {
+            "show": true,
+            "position": "RightCenter"
+          }
+        ],
+
+        "labels": [
+          {
+            "show": true,
+            "fontSize": 12
+          }
+        ]
+      }
+    }
+  }
+}

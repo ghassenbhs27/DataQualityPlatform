@@ -1,0 +1,4 @@
+# Dependances Python du projet.
+fastapi
+uvicorn
+pydantic

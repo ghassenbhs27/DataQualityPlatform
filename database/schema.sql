@@ -1,0 +1,12 @@
+-- Schema SQL du projet.
+
+CREATE TABLE IF NOT EXISTS audit_history (
+	id INT AUTO_INCREMENT PRIMARY KEY,
+	audit_date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	total_patients INT NOT NULL DEFAULT 0,
+	total_controls INT NOT NULL DEFAULT 0,
+	total_errors INT NOT NULL DEFAULT 0,
+	global_score DECIMAL(5,2) NOT NULL DEFAULT 0.00,
+	duration_seconds INT NOT NULL DEFAULT 0,
+	notes TEXT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
