@@ -1,187 +1,349 @@
-# DataQualityPlatform
+# 🏥 DataQualityPlatform
 
-Application complète d'audit et de pilotage de la qualité des données patients.
+> **Plateforme d'audit et d'aide à la décision pour la qualité des données patients**
 
-Le projet fonctionne selon le flux suivant :
+Application web complète permettant de contrôler, mesurer, historiser et visualiser la qualité des données patients grâce à un moteur d'audit Python, une API FastAPI et une interface React moderne.
 
-`React` → `FastAPI` → `Backend Python` → `MySQL`
+---
 
-L'objectif est de détecter, mesurer, historiser et visualiser les anomalies de qualité de données à partir d'une table `patients`.
+## 📌 Aperçu
 
-## Objectif du projet
+Le projet suit l'architecture suivante :
 
-`DataQualityPlatform` permet de :
+```text
+React
+   │
+Axios
+   │
+FastAPI
+   │
+Backend Python
+   │
+MySQL
+```
 
-- analyser automatiquement les données patients ;
+L'objectif est de :
+
+- détecter automatiquement les anomalies de qualité des données ;
 - calculer un score global de qualité ;
-- historiser chaque audit dans la base ;
-- afficher les résultats dans une interface web moderne ;
-- comparer plusieurs audits réels dans le temps ;
-- prioriser les actions correctives.
+- historiser les audits réalisés ;
+- comparer plusieurs audits dans le temps ;
+- aider les décideurs à prioriser les actions correctives.
 
-## Architecture
+---
+
+# 📑 Table des matières
+
+- [Objectif](#-objectif)
+- [Architecture](#-architecture)
+- [Technologies](#-technologies)
+- [Fonctionnalités](#-fonctionnalités)
+- [Backend Python](#-backend-python)
+- [API FastAPI](#-api-fastapi)
+- [Frontend React](#-frontend-react)
+- [Comparaison des audits](#-comparaison-des-audits)
+- [Scénarios de données](#-scénarios-de-données)
+- [Installation](#-installation)
+- [Configuration](#-configuration)
+- [État actuel](#-état-actuel)
+
+---
+
+# 🎯 Objectif
+
+La plateforme permet de :
+
+- ✅ Auditer automatiquement les données patients
+- ✅ Détecter les anomalies de qualité
+- ✅ Calculer un score global de qualité
+- ✅ Historiser chaque audit
+- ✅ Comparer plusieurs audits
+- ✅ Prioriser les actions correctives
+- ✅ Fournir une aide à la décision
+
+---
+
+# 🏗️ Architecture
 
 ```text
 ProjetDataQuality/
-├── api/                 # API REST FastAPI
-├── audit/               # Moteur d'audit Python
-├── database/            # Schéma SQL et scénarios de données
-├── frontend/            # Interface React / Vite
-├── powerbi/             # Espace réservé aux rapports BI
+│
+├── api/                  # API REST FastAPI
+├── audit/                # Moteur d'audit Python
+├── database/             # Schéma SQL et scénarios
+├── frontend/             # Application React
+├── powerbi/              # Rapports BI (expérimentation)
+│
 ├── requirements.txt
 └── README.md
 ```
 
-## Backend Python
+---
 
-Le dossier `audit/` suit une séparation claire des responsabilités :
+# 🛠️ Technologies
 
-- `config/` : configuration technique et règles du projet
-- `database/` : connexion MySQL
-- `repositories/` : accès aux données
-- `services/` : orchestration du workflow d'audit
-- `checks/` : règles de contrôle qualité
-- `models/` : structures métier
+| Couche | Technologies |
+|---------|--------------|
+| Frontend | React, Vite, Material UI, Recharts, Axios |
+| Backend | Python |
+| API | FastAPI |
+| Base de données | MySQL |
+| Visualisation | MUI DataGrid |
+| Gestion de versions | Git / GitHub |
 
-Le moteur d'audit exécute actuellement les contrôles suivants :
+---
 
-- `MISSING_VALUES`
-- `DUPLICATE_VALUES`
-- `INVALID_INS`
-- `INVALID_CIN`
-- `INVALID_PHONE`
-- `INVALID_EMAIL`
-- `INVALID_DATE`
+# 🚀 Fonctionnalités
 
-Chaque audit produit :
+## ✔ Audit des données
 
-- un score global ;
-- un nombre total d'anomalies ;
-- une répartition par sévérité ;
-- un détail par règle ;
-- une persistance en base dans `audit_history` et `audit_results`.
+Le moteur d'audit contrôle automatiquement :
 
-## API FastAPI
+- valeurs manquantes
+- doublons
+- INS invalides
+- CIN invalides
+- téléphones invalides
+- e-mails invalides
+- dates invalides
 
-Le dossier `api/` expose les services existants sans dupliquer la logique métier.
+Chaque audit génère :
 
-Endpoints principaux :
+- score global
+- nombre d'anomalies
+- niveau de sévérité
+- recommandations
+- historique complet
 
-- `GET /dashboard`
-- `GET /audit/history`
-- `GET /audit/results`
-- `POST /audit/run`
+---
 
-## Frontend React
+## 📊 Tableau de bord
 
-Le frontend a été développé avec :
+Le Dashboard permet de visualiser :
 
-- `React`
-- `Vite`
-- `Material UI`
-- `React Router`
-- `Axios`
-- `Recharts`
-- `MUI DataGrid`
+- Score global
+- KPI
+- Répartition des anomalies
+- Historique
+- Graphiques interactifs
+- Priorités d'action
 
-Pages disponibles :
+---
 
-- `Dashboard`
-- `Historique`
-- `Résultats`
-- `Recommandations`
-- `Comparaison des audits`
+## 📈 Historique
 
-L'interface permet notamment :
+- consultation des audits
+- évolution du score
+- évolution des anomalies
+- statistiques
 
-- l'affichage des KPI du dernier audit ;
-- la visualisation des anomalies par règle et par sévérité ;
-- l'historique des audits ;
-- la consultation détaillée des résultats ;
-- la priorisation des recommandations ;
-- la comparaison de deux audits persistés.
+---
 
-## Comparaison des audits
+## 📋 Résultats
 
-La page `Comparaison des audits` permet de sélectionner un `Audit A` et un `Audit B` puis d'afficher :
+- DataGrid interactif
+- recherche
+- filtres
+- tri
+- export CSV
 
-- l'évolution du score global ;
-- l'évolution du nombre total d'anomalies ;
-- l'évolution des anomalies critiques, majeures et mineures ;
-- un tableau comparatif par règle ;
-- une synthèse décisionnelle déterministe ;
-- une priorisation des actions restantes.
+---
 
-Les comparaisons s'appuient uniquement sur les données persistées dans :
+## 💡 Recommandations
+
+Pour chaque règle :
+
+- niveau de priorité
+- gravité
+- nombre de patients concernés
+- action recommandée
+
+---
+
+## 📉 Comparaison des audits
+
+La plateforme permet de comparer deux audits réels.
+
+Les indicateurs suivants sont calculés :
+
+- évolution du score global
+- évolution du nombre d'anomalies
+- évolution par gravité
+- comparaison par règle
+- synthèse décisionnelle
+- priorités d'action
+
+Toutes les comparaisons reposent exclusivement sur les données persistées dans :
 
 - `audit_history`
 - `audit_results`
 
-## Scénarios de données
+---
 
-Le dossier `database/scenarios/` contient des scripts SQL réversibles pour tester plusieurs états de données patients sans modifier le moteur d'audit.
+# ⚙️ Backend Python
 
-Scripts disponibles :
+Le backend est organisé selon une architecture en couches.
+
+```text
+audit/
+│
+├── config/
+├── database/
+├── repositories/
+├── services/
+├── checks/
+└── models/
+```
+
+Le moteur d'audit centralise toute la logique métier.
+
+Aucun calcul n'est réalisé dans FastAPI ou React.
+
+---
+
+# 🌐 API FastAPI
+
+L'API expose uniquement les services existants.
+
+## Endpoints
+
+| Méthode | Endpoint |
+|---------|----------|
+| GET | `/dashboard` |
+| GET | `/audit/history` |
+| GET | `/audit/results` |
+| POST | `/audit/run` |
+
+---
+
+# 💻 Frontend React
+
+Le frontend est développé avec :
+
+- React
+- Vite
+- Material UI
+- React Router
+- Axios
+- Recharts
+- MUI DataGrid
+
+Pages disponibles :
+
+- Dashboard
+- Historique
+- Résultats
+- Recommandations
+- Comparaison des audits
+
+---
+
+# 🗄️ Scénarios de données
+
+Le dossier :
+
+```text
+database/scenarios/
+```
+
+contient des scripts SQL permettant :
+
+- sauvegarder les données initiales ;
+- appliquer un scénario amélioré ;
+- restaurer l'état d'origine.
+
+Scripts :
 
 - `backup_initial_patients.sql`
 - `apply_improved_patients.sql`
 - `restore_initial_patients.sql`
 
-Ces scripts permettent :
+---
 
-- de conserver un état initial ;
-- d'appliquer un scénario amélioré partiel ;
-- de restaurer les données d'origine.
+# ⚡ Installation
 
-## Lancement du projet
-
-### 1. Backend / API
-
-Installer les dépendances Python puis lancer FastAPI :
+## Backend
 
 ```bash
 pip install -r requirements.txt
+
 python -m uvicorn api.main:app --host 127.0.0.1 --port 8000
 ```
 
-### 2. Frontend
+---
 
-Depuis le dossier `frontend/` :
+## Frontend
 
 ```bash
+cd frontend
+
 npm install
+
 npm run dev
 ```
 
-Build de production :
+---
+
+## Build
 
 ```bash
 npm run build
 ```
 
-## Base de données
+---
 
-La configuration MySQL est chargée depuis le fichier `.env` à la racine du projet.
+# ⚙️ Configuration
 
-Variables attendues :
+Créer un fichier `.env` à la racine du projet contenant :
 
-- `DB_HOST`
-- `DB_PORT`
-- `DB_NAME`
-- `DB_USER`
-- `DB_PASSWORD`
+```env
+DB_HOST=
+DB_PORT=
+DB_NAME=
+DB_USER=
+DB_PASSWORD=
+```
 
-## État actuel
+---
 
-Le projet est aujourd'hui capable de :
+# ✅ État actuel
 
-- lancer un audit réel à partir des données `patients` ;
-- persister les audits en base ;
-- afficher les résultats dans une interface web complète ;
-- comparer plusieurs audits réels ;
-- restaurer le scénario initial de données après test.
+La plateforme permet aujourd'hui de :
 
-## Remarque
+- lancer un audit réel
+- calculer un score global
+- historiser les audits
+- comparer plusieurs audits
+- visualiser les résultats
+- prioriser les actions correctives
+- restaurer plusieurs scénarios de données
 
-Le moteur d'audit, le calcul des scores et les contrôles qualité restent centralisés dans le backend Python.  
-Le frontend et l'API se contentent d'exposer et de visualiser les résultats produits.
+---
+
+# 📌 Principe d'architecture
+
+La logique métier est entièrement centralisée dans le backend Python.
+
+```text
+React
+     │
+Axios
+     │
+FastAPI
+     │
+AuditService
+     │
+AuditEngine
+     │
+ScoreService
+     │
+Repositories
+     │
+MySQL
+```
+
+FastAPI expose uniquement les données.
+
+React se limite à leur visualisation.
+
+Cette séparation garantit une architecture modulaire, maintenable et évolutive.
